@@ -4,5 +4,5 @@
 
 	Application supports three types of users: 
 	* built-in Administrator (admin:admin) with full system control
-	* Registered user is able to download books and/or add them to their favorites list
+	* Registered user is able to download books and/or add them to his favorites list
 	* Anonymous user can only list books and their details
