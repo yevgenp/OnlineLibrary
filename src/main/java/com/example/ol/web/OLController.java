@@ -130,11 +130,10 @@ public class OLController {
 			HttpServletResponse response){
 		
 		Book b = bookRepository.getOne(bookId);
-		try {
-			response.setHeader("Content-Disposition", "attachment;filename=\"" +
-								b.getFilename()+ "\"");
-			OutputStream out = response.getOutputStream();
-			//response.setContentType(b.getContentType());
+		response.setHeader("Content-Disposition", "attachment;filename=\"" +
+				b.getFilename()+ "\"");
+		//response.setContentType(b.getContentType());
+		try (OutputStream out = response.getOutputStream() ){
 			IOUtils.copy(new ByteArrayInputStream(b.getContent()), out);
 			out.flush();
 			out.close();
