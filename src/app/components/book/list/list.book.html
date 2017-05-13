@@ -1,0 +1,79 @@
+<div class="col-md-10 col-md-offset-1">
+  <h1 class="text-center" translate>book.list.title</h1>
+
+  <div class="row">
+    <button class="btn btn-primary col-md-offset-11"
+            type="button" ng-if="$root.session.hasUserRole('ADMINISTRATOR')" ng-click="ctrl.addNewBook()">
+      {{'button.add' | translate}}  <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </div>
+
+  <div class="col-md-12">
+    <br>
+  </div>
+
+  <uib-accordion close-others="oneAtATime" class="search_panel">
+    <uib-accordion-group class="panel-default" is-disabled="true" is-open="ctrl.accordion.open">
+      <uib-accordion-heading class="">
+
+        <div class="form-group has-feedback">
+          <i class="glyphicon glyphicon-search form-control-feedback"></i>
+          <input placeholder="{{'common.search' | translate}}" id="searchField"
+                 class="form-control"  ng-model-options="{debounce: 300}"
+                 ng-model="ctrl.search.key">
+        </div>
+
+        <div class="row text-center" ng-click="ctrl.switchAccordionState()">
+          <i class="glyphicon pointer"
+             ng-class="{'glyphicon-chevron-up': ctrl.accordion.open,
+                        'glyphicon-chevron-down': !ctrl.accordion.open}">
+          </i><label class="pointer" translate>common.filters</label>
+        </div>
+
+      </uib-accordion-heading>
+
+      <div class="container-fluid">
+        <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+          <label for="author" translate>book.author</label><br>
+          <select name="author" id="author" class="filter"
+                  ng-options="author for author in ctrl.authors"
+                  ng-model="ctrl.search.filters.author">
+          </select>
+        </div>
+          <div class="col-md-3 col-md-offset-2">
+          <label for="genre" translate>book.genre</label><br>
+          <select name="genre" id="genre" class="filter"
+                  ng-options="genre for genre in ctrl.genres"
+                  ng-model="ctrl.search.filters.genre">
+          </select>
+        </div>
+      </div>
+</div>
+    </uib-accordion-group>
+  </uib-accordion>
+
+  <table ng-table="ctrl.tableParams" class="table table-condensed table-bordered table-striped book-table">
+    <tr ng-repeat="book in $data">
+      <td data-title="ctrl.translations['author']" sortable="'author'">{{book.author}}</td>
+      <td data-title="ctrl.translations['title']" sortable="'title'"> {{book.title}}</td>
+      <td data-title="ctrl.translations['genre']" sortable="'genre'">{{book.genre}}</td>
+      <td data-title="ctrl.translations['description']">{{book.description}}</td>
+      <td  data-title="ctrl.translations['action']" class="text-center action">
+        <img src="assets/images/favoritesOff.png" class="star pointer" ng-click="ctrl.addToFavorites(book)"
+             ng-if="$root.session.hasUserRole('USER') && !book.inFavorites">
+        <img src="assets/images/favoritesOn.png" class="star pointer" ng-click="ctrl.remFromFavorites(book)"
+             ng-if="$root.session.hasUserRole('USER') && book.inFavorites">
+        <button class="btn btn-primary" type="button" ng-click="ctrl.download(book)"
+                ng-if="$root.session.authenticated" >
+          <span class="glyphicon glyphicon-download-alt"></span>
+        </button>
+        <button class="btn btn-primary" type="button" ng-click="ctrl.delete(book)"
+                ng-if="$root.session.hasUserRole('ADMINISTRATOR')" >
+          <span class="glyphicon glyphicon-remove" style="color: firebrick;"></span>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</div>

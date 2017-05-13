@@ -1,0 +1,81 @@
+<div class="modal-header text-center">
+  <button  type="button" ng-click="ctrl.closeModal()"
+           class="btn btn-link pull-right" style="color: firebrick">
+    <i class="glyphicon glyphicon-remove"></i>
+  </button>
+  <h2 class="modal-title" id="modal-title" translate>book.addBookTitle</h2>
+</div>
+
+<div class="modal-body">
+  <form name="form" novalidate>
+    <div class="col-md-12">
+      <div class="form-group col-md-12">
+        <div ng-class="{'alert-success': ctrl.success, 'alert-danger': ctrl.error || ctrl.required}"
+             class="form-group alert text-center" ng-if="ctrl.success || ctrl.error || ctrl.required">
+          {{ctrl.text}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group col-md-6"
+           ng-class="{'has-error': form.author.$touched && form.author.$invalid}">
+        <label for="author" translate>book.author</label>
+        <input type="text" class="form-control"
+               id="author" name="author" ng-model="ctrl.book.author"
+               required/>
+        <div ng-if="form.author.$touched" ng-messages="form.author.$error">
+      <span ng-message="required" class="help-block" translate>
+      common.fieldRequired
+    </span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6"
+           ng-class="{'has-error': form.title.$touched && form.title.$invalid}">
+        <label for="title" translate>book.title</label>
+        <input type="title" class="form-control"
+               id="title" name="title"
+               ng-model="ctrl.book.title" required/>
+        <div ng-if="form.title.$touched" ng-messages="form.title.$error">
+          <span ng-message="required" class="help-block" translate>common.fieldRequired</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group col-md-6"
+           ng-class="{'has-error': form.genre.$touched && form.genre.$invalid}">
+        <label for="genre" translate>book.genre</label>
+        <input type="text" class="form-control"
+               id="genre" name="genre"
+               ng-model="ctrl.book.genre" required/>
+        <div ng-if="form.genre.$touched" ng-messages="form.genre.$error">
+        <span ng-message="required" class="help-block" translate>
+          common.fieldRequired
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="description" translate>book.description</label>
+        <textarea class="form-control" style="resize: vertical" rows="6"
+               id="description" name="description"
+               ng-model="ctrl.book.description">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group col-md-4">
+        <label for="file" translate>book.file</label><br>
+        <input type="file" accept="application/*" id="file" file-model="ctrl.file" required/>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button ng-click="ctrl.upload()" class="btn btn-primary pull-right" ng-disabled="form.$invalid"
+          translate>button.upload</button>
+</div>

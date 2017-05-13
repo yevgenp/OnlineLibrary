@@ -1,0 +1,9 @@
+.modal-header {
+  padding: 15px;
+  border-bottom: none;
+}
+
+.modal-footer {
+  padding: 15px;
+  border-top: none;
+}

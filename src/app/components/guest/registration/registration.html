@@ -1,0 +1,112 @@
+<div class="col-md-12">
+  <div class="form-group col-md-8 col-md-offset-2">
+    <div class="alert alert-danger text-center" ng-show="ctrl.error">
+      {{ctrl.errorText}}
+    </div>
+    <div class="alert alert-success text-center" ng-show="ctrl.success" translate>
+      registration.successText
+    </div>
+  </div>
+</div>
+
+<form name="form" ng-submit="ctrl.submit()" novalidate>
+  <div class="col-md-12">
+    <div class="form-group col-md-4 col-md-offset-2"
+         ng-class="{'has-error': (form.username.$touched || form.$submitted)
+                                && form.username.$invalid}">
+      <label for="username" translate>user.usernameAsLogin</label>
+      <input type="text" class="form-control"
+             id="username" name="username" ng-model="ctrl.user.username"
+             ng-pattern="/^\w+$/" required/>
+      <div ng-if="form.username.$touched || form.$submitted" ng-messages="form.username.$error">
+      <span ng-message="required" class="help-block" translate>
+      common.fieldRequired
+      </span>
+      <span ng-show="(form.username.$dirty && form.username.$touched || form.$submitted)
+                      && form.username.$invalid" class="help-block" translate>
+          user.usernameInvalid
+      </span>
+      </div>
+    </div>
+
+    <div class="form-group col-md-4"
+         ng-class="{'has-error': (form.email.$touched || form.$submitted) && form.email.$invalid}">
+      <label for="email" translate>user.email</label>
+      <input type="email" class="form-control"
+             id="email" name="email"
+             ng-model="ctrl.user.email" required/>
+      <div ng-if="form.email.$touched || form.$submitted" ng-messages="form.email.$error">
+        <span ng-message="required" class="help-block" translate>common.fieldRequired</span>
+        <span ng-message="email" class="help-block" translate>user.emailInvalid</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-group col-md-4 col-md-offset-2"
+         ng-class="{'has-error': (form.password.$touched || form.$submitted) && form.password.$invalid}">
+      <label for="password" translate>user.password</label>
+      <input type="password" class="form-control"
+             id="password" name="password" ng-model="ctrl.user.password"
+             ng-pattern="/\S+/" required/>
+      <div ng-if="form.password.$touched || form.$submitted" ng-messages="form.password.$error">
+      <span ng-message="required" class="help-block" translate>
+      common.fieldRequired
+    </span>
+      </div>
+      <span ng-show="(form.password.$touched || form.$submitted)
+                    && form.password.$invalid" class="help-block" translate>
+      user.passwordInvalid
+    </span>
+    </div>
+
+    <div class="form-group col-md-4"
+         ng-class="{'has-error': form.passwordConfirm.$invalid
+       && (form.passwordConfirm.$touched || form.$submitted)}">
+      <label for="passwordConfirm" translate>user.passwordConfirm</label>
+      <input type="password" class="form-control"
+             id="passwordConfirm" name="passwordConfirm"
+             ng-model="ctrl.user.passwordConfirm" value-match="ctrl.user.password" required/>
+      <span ng-show="form.password.$valid && form.passwordConfirm.$error.valueMatch
+                    && (form.passwordConfirm.$touched || form.$submitted)" class="help-block" translate>
+      user.passwordConfirmInvalid
+    </span>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-group col-md-4 col-md-offset-2"
+         ng-class="{'has-error': (form.firstName.$touched || form.$submitted)
+                  && form.firstName.$invalid}">
+      <label for="firstName" translate>user.firstName</label>
+      <input type="text" class="form-control"
+             id="firstName" name="firstName"
+             only-letters-input ng-model="ctrl.user.firstName" />
+      <div ng-if="form.firstName.$touched || form.$submitted" ng-messages="form.firstName.$error">
+      <span ng-message="required" class="help-block" translate>
+      common.fieldRequired
+    </span>
+      </div>
+    </div>
+
+    <div class="form-group col-md-4"
+         ng-class="{'has-error': (form.lastName.$touched || form.$submitted)
+                  && form.lastName.$invalid}">
+      <label for="lastName" translate>user.lastName</label>
+      <input type="text" class="form-control"
+             id="lastName" name="lastName"
+             only-letters-input  ng-model="ctrl.user.lastName" />
+      <div ng-if="form.lastName.$touched || form.$submitted" ng-messages="form.lastName.$error">
+      <span ng-message="required" class="help-block" translate>
+      common.fieldRequired
+    </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group col-md-10">
+    <button type="submit" class="btn btn-primary pull-right" ng-disabled="form.$invalid"
+            translate>button.register</button>
+  </div>
+
+</form>
