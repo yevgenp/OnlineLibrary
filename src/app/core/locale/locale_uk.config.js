@@ -13,7 +13,7 @@ function configTranslateProviderPL($translateProvider) {
       description: "Опис",
       fetchError: "Не можливо отримати список книг !",
       file: "Файл",
-      fileError: "Файл пошкоджений",
+      error: "Недопустиме значення поля(ів)",
       fileRequired: "Файл книги є обов'язковим",
       genre: "Жанр",
       list: {
@@ -36,7 +36,7 @@ function configTranslateProviderPL($translateProvider) {
       failure: "Помилка",
       fieldRequired: "Це поле є обов'язковим",
       filters: "Фільтри",
-      isInvalid: "є не правильним",
+      isInvalid: "є недопустимим",
       search: "Пошук за назвою та описом",
       welcome: "Вітаємо в Онлайн Бібліотеці !",
       unknownError: "Невідома помилка. Спробуйте пізніше"

@@ -13,7 +13,7 @@ function configTranslateProviderEN($translateProvider) {
       description: "Description",
       fetchError: "Could not fetch books list !",
       file: "File",
-      fileError: "File is malformed",
+      error: "Invalid field(s) content",
       fileRequired: "Book file is required",
       genre: "Genre",
       list: {

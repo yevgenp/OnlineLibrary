@@ -1,7 +1,7 @@
 <div class="col-md-12">
   <div class="form-group col-md-8 col-md-offset-2">
     <div class="alert alert-danger text-center" ng-show="ctrl.error">
-      {{ctrl.errorText}}
+      <div  ng-repeat="error in ctrl.errorText">{{error}}</div>
     </div>
     <div class="alert alert-success text-center" ng-show="ctrl.success" translate>
       registration.successText

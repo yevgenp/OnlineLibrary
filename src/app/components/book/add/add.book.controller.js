@@ -49,7 +49,7 @@ function AddBookController ($scope, $rootScope, BookService, $uibModalInstance,
       case 400:
         ctrl.success = false;
         ctrl.error = true;
-        ctrl.text = ctrl.translations['fileError'];
+        ctrl.text = ctrl.translations['error'];
         break;
       default:
         ctrl.success = false;
@@ -63,11 +63,11 @@ function AddBookController ($scope, $rootScope, BookService, $uibModalInstance,
   $rootScope.$on('$translateChangeSuccess', function() {ctrl.translate()});
 
   ctrl.translate = function () {
-    $translate(['book.fileRequired', 'book.addSuccess', 'book.fileError', 'common.unknownError'])
+    $translate(['book.fileRequired', 'book.addSuccess', 'book.error', 'common.unknownError'])
       .then(function (translations) {
         ctrl.translations['fileRequired'] = translations['book.fileRequired'];
         ctrl.translations['addSuccess'] = translations['book.addSuccess'];
-        ctrl.translations['fileError'] = translations['book.fileError'];
+        ctrl.translations['error'] = translations['book.error'];
         ctrl.translations['unknownError'] = translations['common.unknownError'];
       });
   };

@@ -1,10 +1,14 @@
 package com.example.ol.model.hibernate.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 
 @Data
@@ -19,15 +23,16 @@ public class Book {
   @Column(unique = true, nullable = false)
   private Long id;
 
-  @NotEmpty
+  @NotEmpty @Size(max = 254)
   private String author;
 
-  @NotEmpty
+  @NotEmpty @Size(max = 254)
   private String genre;
 
-  @NotEmpty
+  @NotEmpty @Size(max = 254)
   private String title;
 
+  @Size(max = 9999)
   @Column(length = 10000)
   private String description;
 

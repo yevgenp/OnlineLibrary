@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
@@ -30,22 +31,24 @@ public class User {
   @Column(unique = true, nullable = false)
   private Long id;
 
-  @NotEmpty @Pattern(regexp = "\\w+")
+  @NotEmpty @Size(max = 254) @Pattern(regexp = "\\w+")
   @Column(unique = true)
   private String username;
 
   @Column(nullable = false, columnDefinition = "boolean default false")
   private boolean enabled;
 
-  @NotEmpty
+  @NotEmpty @Size(max = 254)
   @JsonProperty(access = WRITE_ONLY)
   private String password;
 
-  @Email
-  @NotEmpty
+  @NotEmpty @Size(max = 254) @Email
   private String email;
 
+  @Size(max = 254)
   private String firstName;
+
+  @Size(max = 254)
   private String lastName;
 
   @ManyToMany

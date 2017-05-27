@@ -35,13 +35,12 @@ function RegistrController($scope, $rootScope, $location,
   }
 
   ctrl.onError = function (response) {
-        ctrl.errorText = '';
+        ctrl.errorText = [];
         response.data.forEach(function (item) {
-          if (item.code !== 'user.username.alreadyUsed')
-            ctrl.errorText += capitalize(item.field) + ' '
-              + ctrl.translations['isInvalid'] + '\n';
+          if (item.code === 'user.username.alreadyUsed')
+            ctrl.errorText.push(ctrl.translations['isAlreadyRegistered']);
           else
-            ctrl.errorText += ctrl.translations['isAlreadyRegistered'] + '\n'
+            ctrl.errorText.push(capitalize(item.field) + ' ' + ctrl.translations['isInvalid']);
         });
         ctrl.error = true;
   };
